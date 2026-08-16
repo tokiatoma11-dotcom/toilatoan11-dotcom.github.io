@@ -187,5 +187,19 @@
             });
         }
     </script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const iframes = document.querySelectorAll('.video-box iframe');
+        iframes.forEach(function (iframe) {
+            iframe.addEventListener('mouseenter', function () {
+                iframes.forEach(function (other) {
+                    if (other !== iframe) {
+                        other.src = other.src;
+                    }
+                });
+            });
+        });
+    });
+    </script>
 </body>
 </html>

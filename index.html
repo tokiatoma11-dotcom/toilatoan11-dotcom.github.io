@@ -18,7 +18,7 @@
             color: #222;
         }
         .header {
-            background: #ff8c00;
+    background: linear-gradient(135deg, #ff9d42, #ff8c00);
             color: white;
             text-align: center;
             padding: 15px;
@@ -73,15 +73,132 @@
             height: 100%;
             border: 0;
         }
+        
+            
         .hidden {
-            display: none;
-        }
-    </style>
+    display: none;
+}
+
+.banner {
+    background: linear-gradient(90deg, #ff9d42, #ff8c00);
+    color: #fff;
+    padding: 12px 15px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    font-size: 13px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+.banner b {
+    background: rgba(255,255,255,0.25);
+    padding: 4px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+    font-size: 12px;
+}
+.hero {
+    text-align: center;
+    background: #fff;
+    border-radius: 14px;
+    padding: 22px 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+.hero h1 {
+    font-size: 21px;
+    font-weight: 800;
+    color: #1e1e2e;
+    margin-bottom: 8px;
+    line-height: 1.35;
+}
+.hero p {
+    font-size: 13.5px;
+    color: #666;
+    margin-bottom: 16px;
+    line-height: 1.5;
+}
+.hero-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.btn-primary {
+    background: #ff8c00;
+    color: #fff;
+    padding: 10px 22px;
+    border-radius: 20px;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 14px;
+}
+.btn-secondary {
+    background: #fff3e0;
+    color: #ff8c00;
+    padding: 10px 22px;
+    border-radius: 20px;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 14px;
+}
+.faq {
+    background: #fff;
+    border-radius: 14px;
+    padding: 18px 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+.faq h2 {
+    font-size: 17px;
+    margin-bottom: 12px;
+    color: #1e1e2e;
+}
+.faq-item {
+    border-bottom: 1px solid #eee;
+    padding: 10px 0;
+}
+.faq-item:last-child {
+    border-bottom: none;
+}
+.faq-item b {
+    display: block;
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 4px;
+}
+.faq-item p {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.5;
+}
+.footer {
+    text-align: center;
+    padding: 20px 10px;
+    color: #999;
+    font-size: 12.5px;
+}
+</style>
 </head>
 <body>
 
-    <div class="header">By mod lite</div>
-    <input type="text" id="searchInput" class="search-box" placeholder="Tìm kiếm..." onkeyup="searchItems()">
+    <div class="header">Minh Khang Technology</div>
+
+<div class="banner">
+    <b>LƯU Ý</b>
+    <span>File tải về xài vĩnh viễn, reset máy vẫn cài lại dùng bình thường, không lo mất phí.</span>
+</div>
+
+<div class="hero">
+    <h1>Full app fix lag, tối ưu máy — free 100%</h1>
+    <p>Tổng hợp app, tool, file chỉnh sửa hệ thống giúp máy chạy mượt, đỡ nóng, đỡ lag khi chơi game</p>
+    <div class="hero-buttons">
+        <a href="#list" class="btn-primary">Xem danh sách</a>
+        <a href="https://youtube.com/@modlite" target="_blank" class="btn-secondary">Kênh Youtube</a>
+    </div>
+</div>
+
+<input type="text" id="searchInput" class="search-box" placeholder="Tìm kiếm..." onkeyup="searchItems()">
 
     <div id="list">
 
@@ -219,7 +336,28 @@
         <iframe src="https://www.youtube.com/embed/GWMVUwU1Ey0" allowfullscreen></iframe>
     </div>
 </div>
-    </div>        
+    </div>
+
+    <div class="faq">
+        <h2>Một số câu hỏi thường gặp</h2>
+        <div class="faq-item">
+            <b>Làm sao để tìm file mình cần?</b>
+            <p>Dùng ô tìm kiếm ở trên đầu trang, gõ tên app hoặc từ khoá liên quan là ra ngay.</p>
+        </div>
+        <div class="faq-item">
+            <b>File tải về có an toàn không?</b>
+            <p>Tất cả file đều được test kỹ trước khi đăng, an tâm sử dụng.</p>
+        </div>
+        <div class="faq-item">
+            <b>Không thấy video hướng dẫn?</b>
+            <p>Mỗi card đều có video nhúng sẵn ngay bên dưới nút Tải file, xem trực tiếp không cần qua Youtube.</p>
+        </div>
+    </div>
+
+    <div class="footer">
+        Minh Khang Technology © 2026 · Mọi công cụ chia sẻ hoàn toàn miễn phí
+    </div>
+
     <script>
         function searchItems() {
             var input = document.getElementById('searchInput').value.toLowerCase();

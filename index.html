@@ -185,6 +185,10 @@
     transform: scale(1.03) translateY(-4px);
     box-shadow: 0 8px 20px rgba(255,140,0,0.25);
 }
+.card.pressed {
+    transform: scale(1.05) translateY(-6px);
+    box-shadow: 0 10px 24px rgba(255,140,0,0.35);
+    }
 </style>
 </head>
 <body>
@@ -405,8 +409,24 @@
                 }
             });
         }, { threshold: 0.6 });
-        cards.forEach(function (card) {
+         cards.forEach(function (card) {
             observer.observe(card);
+        });
+    });
+    </script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const cards = document.querySelectorAll('.card');
+        cards.forEach(function (card) {
+            card.addEventListener('touchstart', function () {
+                card.classList.add('pressed');
+            }, { passive: true });
+            card.addEventListener('touchend', function () {
+                card.classList.remove('pressed');
+            }, { passive: true });
+            card.addEventListener('touchcancel', function () {
+                card.classList.remove('pressed');
+            }, { passive: true });
         });
     });
     </script>

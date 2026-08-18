@@ -80,7 +80,18 @@
         .chart-block h3 { font-size: 15px; color: #1e1e2e; margin-bottom: 4px; }
         .chart-block .chart-sub { font-size: 12px; color: #888; margin-bottom: 16px; }
         .chart-bars { display: flex; align-items: flex-end; gap: 8px; height: 130px; padding: 0 4px; }
-        .chart-bar { flex: 1; background: linear-gradient(180deg, #ffb066, #ff7a00); border-radius: 6px 6px 2px 2px; height: 0; transition: height 1s ease-out; }
+        .chart-bar { flex: 1; background: linear-gradient(180deg, #ffb066, #ff7a00); border-radius: 6px 6px 2px 2px; height: 0; transition: height 1s ease-out; }.pie-block { background: #fff; border-radius: 14px; padding: 20px 15px; margin-bottom: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+        .pie-block h3 { font-size: 15px; color: #1e1e2e; margin-bottom: 4px; }
+        .pie-block .chart-sub { font-size: 12px; color: #888; margin-bottom: 16px; }
+        .pie-wrap { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; justify-content: center; }
+        .pie {
+            width: 130px; height: 130px; border-radius: 50%;
+            background: conic-gradient(#ff7a00 0% 45%, #ffb066 45% 75%, #ffe0b2 75% 100%);
+            animation: pieGrow 1s ease-out;
+        }
+        @keyframes pieGrow { from { transform: scale(0.6); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        .pie-legend { display: flex; flex-direction: column; gap: 8px; font-size: 13px; }
+        .pie-legend span.dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; }
         .features { display: flex; flex-direction: column; gap: 12px; margin-bottom: 15px; }
         .feature-card {
             background: #fff; border-radius: 14px; padding: 16px; display: flex; gap: 12px;
@@ -139,7 +150,18 @@
                 <div class="chart-bar" data-h="100"></div>
             </div>
         </div>
-
+<div class="pie-block">
+            <h3>👥 Người dùng theo thiết bị</h3>
+            <div class="chart-sub">Tỉ lệ người dùng tool theo loại máy</div>
+            <div class="pie-wrap">
+                <div class="pie"></div>
+                <div class="pie-legend">
+                    <div><span class="dot" style="background:#ff7a00"></span>Android — 45%</div>
+                    <div><span class="dot" style="background:#ffb066"></span>Laptop/PC — 30%</div>
+                    <div><span class="dot" style="background:#ffe0b2"></span>Khác — 25%</div>
+                </div>
+            </div>
+        </div>
         <div class="features">
             <div class="feature-card">
                 <div class="feature-icon">🚀</div>

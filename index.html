@@ -1,538 +1,85 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="google-site-verification" content="l7pmv0YOais7IhO-8gGcfG7X9OXu8eJnVeFAGXT8M7o" />
- <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-        background: linear-gradient(160deg, #fff8ec 0%, #ffe9c2 100%);
-        font-family: Arial, sans-serif;
-        padding: 10px;
-        color: #222;
-        -webkit-text-size-adjust: 100%;
-        text-size-adjust: 100%;
-    }
-    .header {
-        background: linear-gradient(135deg, #ffb066, #ff7a00);
-        color: white; text-align: center; padding: 20px;
-        border-radius: 16px; font-size: 28px; font-weight: 900;
-        margin-bottom: 18px; letter-spacing: -0.5px;
-        box-shadow: 0 8px 24px rgba(255,122,0,0.45);
-    }
-    .search-box {
-        width: 100%; padding: 16px 20px; border-radius: 26px;
-        border: 2px solid #ffd9a8; font-size: 18px; outline: none;
-        margin-bottom: 20px; box-shadow: 0 4px 12px rgba(255,140,0,0.15);
-    }
-    .search-box:focus { border-color: #ff8c00; box-shadow: 0 4px 16px rgba(255,140,0,0.3); }
-    .card {
-        background: white; border-radius: 18px; padding: 16px;
-        margin-bottom: 32px; box-shadow: 0 6px 18px rgba(0,0,0,0.12);
-        border: 1px solid #ffe4c4;
-    }
-    .card h3 { font-size: 19px; margin-bottom: 8px; color: #333; }
-    .badge {
-        display: inline-block; background: #fff3e0; color: #ff7a00;
-        padding: 4px 10px; border-radius: 12px; font-size: 13px;
-        font-weight: 700; margin-bottom: 8px;
-        animation: badgeBounce 1.8s ease-in-out infinite;
-    }
-    @keyframes badgeBounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
-    .social-proof { font-size: 13px; color: #999; margin-bottom: 10px; }
-    .download-btn {
-        display: inline-block; background: linear-gradient(135deg, #ffb066, #ff7a00);
-        color: white; padding: 14px 30px; border-radius: 28px; text-decoration: none;
-        font-size: 18px; font-weight: 900; margin-bottom: 16px;
-        box-shadow: 0 6px 16px rgba(255,122,0,0.4); letter-spacing: 0.3px;
-        animation: btnPulse 2.2s ease-in-out infinite;
-    }
-    @keyframes btnPulse { 0%,100% { box-shadow: 0 6px 16px rgba(255,122,0,0.4); } 50% { box-shadow: 0 6px 26px rgba(255,122,0,0.75); } }
-    .video-box { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 10px; }
-    .video-box iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
-    .hidden { display: none; }
-    .banner {
-        background: linear-gradient(90deg, #ff9d42, #ff8c00); color: #fff;
-        padding: 12px 15px; border-radius: 12px; margin-bottom: 15px;
-        font-size: 14px; display: flex; gap: 10px; align-items: center;
-    }
-    .banner b { background: rgba(255,255,255,0.25); padding: 4px 10px; border-radius: 20px; white-space: nowrap; font-size: 13px; }
-    .hero {
-        text-align: center; background: #fff; border-radius: 14px;
-        padding: 22px 15px; margin-bottom: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-    }
-    .hero h1 { font-size: 23px; font-weight: 800; color: #1e1e2e; margin-bottom: 8px; line-height: 1.35; animation: heroSlide 0.7s ease-out; }
-    @keyframes heroSlide { from { opacity: 0; transform: translateY(-18px); } to { opacity: 1; transform: translateY(0); } }
-    .hero p { font-size: 15px; color: #666; margin-bottom: 16px; line-height: 1.5; }
-    .hero-buttons { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
-    .btn-primary { background: #ff8c00; color: #fff; padding: 10px 22px; border-radius: 20px; font-weight: 700; text-decoration: none; font-size: 15px; border: none; cursor: pointer; }
-    .btn-secondary { background: #fff3e0; color: #ff8c00; padding: 10px 22px; border-radius: 20px; font-weight: 700; text-decoration: none; font-size: 15px; }
-    .search-hint { text-align: center; font-size: 14px; color: #ff7a00; font-weight: 700; margin: 4px 0 14px; }
-    .stats-block {
-        background: linear-gradient(135deg, #ffb066, #ff7a00); border-radius: 14px;
-        padding: 20px 15px; margin-bottom: 15px; display: flex; justify-content: space-around;
-        flex-wrap: wrap; gap: 14px; box-shadow: 0 8px 20px rgba(255,122,0,0.35);
-    }
-    .stat-item { text-align: center; color: #fff; min-width: 70px; }
-    .stat-item .num { font-size: 24px; font-weight: 900; display: block; }
-    .stat-item .label { font-size: 12.5px; opacity: 0.9; }
-    .chart-block { background: #fff; border-radius: 14px; padding: 20px 15px; margin-bottom: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
-    .chart-block h3 { font-size: 16px; color: #1e1e2e; margin-bottom: 4px; }
-    .chart-block .chart-sub { font-size: 13px; color: #888; margin-bottom: 16px; }
-    .chart-bars { display: flex; align-items: flex-end; gap: 8px; height: 130px; padding: 0 4px; }
-    .chart-bar { flex: 1; background: linear-gradient(180deg, #ffb066, #ff7a00); border-radius: 6px 6px 2px 2px; height: 0; transition: height 1s ease-out; }
-    .pie-block { background: #fff; border-radius: 14px; padding: 20px 15px; margin-bottom: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
-    .pie-block h3 { font-size: 16px; color: #1e1e2e; margin-bottom: 4px; }
-    .pie-block .chart-sub { font-size: 13px; color: #888; margin-bottom: 16px; }
-    .pie-wrap { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; justify-content: center; }
-    .pie {
-        width: 130px; height: 130px; border-radius: 50%;
-        background: conic-gradient(#ff7a00 0% 45%, #ffb066 45% 75%, #ffe0b2 75% 100%);
-        animation: pieGrow 1s ease-out;
-    }
-    @keyframes pieGrow { from { transform: scale(0.6); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-    .pie-legend { display: flex; flex-direction: column; gap: 8px; font-size: 14px; }
-    .pie-legend span.dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; }
-    .features { display: flex; flex-direction: column; gap: 12px; margin-bottom: 15px; }
-    .feature-card {
-        background: #fff; border-radius: 14px; padding: 16px; display: flex; gap: 12px;
-        align-items: flex-start; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border: 1px solid #ffe4c4;
-    }
-    .feature-icon {
-        width: 42px; height: 42px; min-width: 42px; border-radius: 50%; background: #fff3e0;
-        display: flex; align-items: center; justify-content: center; font-size: 20px;
-    }
-    .feature-card h4 { font-size: 16px; color: #1e1e2e; margin-bottom: 4px; }
-    .feature-card p { font-size: 14px; color: #777; line-height: 1.4; }
-    .faq { background: #fff; border-radius: 14px; padding: 18px 15px; margin-bottom: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
-    .faq h2 { font-size: 18px; margin-bottom: 12px; color: #1e1e2e; }
-    .faq-item { border-bottom: 1px solid #eee; padding: 10px 0; }
-    .faq-item:last-child { border-bottom: none; }
-    .faq-item b { display: block; font-size: 15px; color: #333; margin-bottom: 4px; }
-    .faq-item p { font-size: 14px; color: #666; line-height: 1.5; }
-    .footer { text-align: center; padding: 20px 10px; color: #999; font-size: 13.5px; }
-</style>   <title>Minh Khang Technology</title>
- 
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google-site-verification" content="l7pmv0YOais7IhO-8gGcfG7X9OXu8eJnVeFAGXT8M7o" />
+<title>Minh Khang Technology</title>
+<link rel="stylesheet" href="style.css">
 </head>
- <body>
+<body>
 
-    <div class="header">Minh Khang Technology</div>
+<header class="topbar">
+  <div class="logo">Website của tôi</div>
+  <nav>
+    <a href="index.html" class="active">Trang chủ</a>
+    <a href="video.html">Video</a>
+  </nav>
+</header>
 
-    <input type="text" id="searchInput" class="search-box" placeholder="Tìm kiếm..." onkeyup="searchItems()">
-    <div class="banner">
-        <b>LƯU Ý</b>
-        <span>File tải về xài vĩnh viễn, reset máy vẫn cài lại dùng bình thường, không lo mất phí.</span>
+<main class="hero">
+  <h1>Full app fix lag, tối ưu máy — free 100%</h1>
+  <p>Tổng hợp app, tool, file chỉnh sửa hệ thống giúp máy chạy mượt, đỡ nóng, đỡ lag khi chơi game</p>
+  <a href="video.html" class="btn-primary">Xem video</a>
+
+  <div class="banner">
+    <b>LƯU Ý</b>
+    <span>File tải về xài vĩnh viễn, reset máy vẫn cài lại dùng bình thường, không lo mất phí.</span>
+  </div>
+
+  <div class="stats-block">
+    <div class="stat-item"><span class="num" data-target="28">0</span><span class="label">Tool</span></div>
+    <div class="stat-item"><span class="num" data-target="100" data-suffix="%">0</span><span class="label">Miễn phí</span></div>
+    <div class="stat-item"><span class="num" data-target="28">0</span><span class="label">Đã test</span></div>
+  </div>
+
+  <div class="chart-block">
+    <h3>📈 Tăng tốc thiết bị theo thời gian</h3>
+    <div class="chart-sub">Thống kê lượt dùng tool tối ưu mỗi tháng</div>
+    <div class="chart-bars" id="chartBars">
+      <div class="chart-bar" data-h="40"></div>
+      <div class="chart-bar" data-h="55"></div>
+      <div class="chart-bar" data-h="35"></div>
+      <div class="chart-bar" data-h="65"></div>
+      <div class="chart-bar" data-h="50"></div>
+      <div class="chart-bar" data-h="80"></div>
+      <div class="chart-bar" data-h="100"></div>
     </div>
+  </div>
 
-    <div id="landingSection">
-        <div class="hero">
-            <h1>Full app fix lag, tối ưu máy — free 100%</h1>
-            <p>Tổng hợp app, tool, file chỉnh sửa hệ thống giúp máy chạy mượt, đỡ nóng, đỡ lag khi chơi game</p>
-            <div class="hero-buttons">
-                <button class="btn-primary" onclick="showAllTools()">Xem danh sách</button>
-                <a href="https://youtube.com/@modlite" target="_blank" class="btn-secondary">Kênh Youtube</a>
-            </div>
-        </div>
-
-        <div class="stats-block">
-            <div class="stat-item"><span class="num">28</span><span class="label">Tool</span></div>
-            <div class="stat-item"><span class="num">100%</span><span class="label">Miễn phí</span></div>
-            <div class="stat-item"><span class="num">28</span><span class="label">Đã test</span></div>
-        </div>
-
-        <div class="chart-block">
-            <h3>📈 Tăng tốc thiết bị theo thời gian</h3>
-            <div class="chart-sub">Thống kê lượt dùng tool tối ưu mỗi tháng</div>
-            <div class="chart-bars" id="chartBars">
-                <div class="chart-bar" data-h="40"></div>
-                <div class="chart-bar" data-h="55"></div>
-                <div class="chart-bar" data-h="35"></div>
-                <div class="chart-bar" data-h="65"></div>
-                <div class="chart-bar" data-h="50"></div>
-                <div class="chart-bar" data-h="80"></div>
-                <div class="chart-bar" data-h="100"></div>
-            </div>
-        </div>
-<div class="pie-block">
-            <h3>👥 Người dùng theo thiết bị</h3>
-            <div class="chart-sub">Tỉ lệ người dùng tool theo loại máy</div>
-            <div class="pie-wrap">
-                <div class="pie"></div>
-                <div class="pie-legend">
-                    <div><span class="dot" style="background:#ff7a00"></span>Android — 45%</div>
-                    <div><span class="dot" style="background:#ffb066"></span>Laptop/PC — 30%</div>
-                    <div><span class="dot" style="background:#ffe0b2"></span>Khác — 25%</div>
-                </div>
-            </div>
-        </div>
-        <div class="features">
-            <div class="feature-card">
-                <div class="feature-icon">🚀</div>
-                <div><h4>Fix Lag Toàn Diện</h4><p>Tối ưu hệ thống, tăng FPS, giảm giật lag khi chơi game hay dùng máy hằng ngày</p></div>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🎥</div>
-                <div><h4>Video Hướng Dẫn Chi Tiết</h4><p>Mỗi tool đều có video minh hoạ cách dùng, xem trực tiếp không cần qua Youtube</p></div>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">✅</div>
-                <div><h4>An Toàn 100%</h4><p>Mọi file đều được test kỹ trước khi đăng, dùng vĩnh viễn không lo mất phí</p></div>
-            </div>
-        </div>
-        <div class="search-hint">👆 Bấm vào ô tìm kiếm phía trên để xem danh sách bài viết</div>
+  <div class="pie-block">
+    <h3>👥 Người dùng theo thiết bị</h3>
+    <div class="chart-sub">Tỉ lệ người dùng tool theo loại máy</div>
+    <div class="pie-wrap">
+      <div class="pie"></div>
+      <div class="pie-legend">
+        <div><span class="dot" style="background:#5b8dff"></span>Android — 45%</div>
+        <div><span class="dot" style="background:#3d63c9"></span>Laptop/PC — 30%</div>
+        <div><span class="dot" style="background:#26386b"></span>Khác — 25%</div>
+      </div>
     </div>
-    <div id="list" class="hidden">
+  </div>
 
-        <div class="card" data-title="Không Gian Ram Ảo Tăng Đa Nhiệm Fix Treo Đơ Văng Game">
-            <span class="badge">✅ Đã test</span>
-            <h3>🔧Không Gian Ram Ảo✅Tăng Đa Nhiệm, Fix Treo, Đơ, Văng Game</h3>
-            <div class="social-proof">🔥 Nhiều người đã tải · ⭐ Đánh giá tốt</div>
-            <a class="download-btn" href="https://www.mediafire.com/file/0bx1scikz3lde3c/File_GB_Ram_%E1%BA%A2o%2C_T%C4%83ng_%C4%90a_Nhi%E1%BB%87m%2C_T%E1%BB%91i_%C6%AFu_Game.rar/file" target="_blank">Tải file</a>
-            <div class="video-box"><iframe src="https://www.youtube.com/embed/N3nBjU-6pWc" loading="lazy" allowfullscreen></iframe></div>
-        </div>
-
-        <div class="card" data-title="Unlock Fps Roblox Free Fire Liên Quân Tăng Tốc Fix Lag">
-            <span class="badge">✅ Đã test</span>
-            <h3>⚡ Unlock Fps Roblox, Free Fire, Liên Quân,...</h3>
-            <div class="social-proof">🔥 Nhiều người đã tải · ⭐ Đánh giá tốt</div>
-            <a class="download-btn" href="https://www.mediafire.com/file/y9k45m26sfb0epz/Unlock_FPS_Game.zip/file" target="_blank">Tải file</a>
-            <div class="video-box"><iframe src="https://www.youtube.com/embed/IUnWZXWeW08" loading="lazy" allowfullscreen></iframe></div>
-        </div>
-
-        <div class="card" data-title="4 Ứng Dụng Super Lite Hệ Thống Android Nhẹ Nhất V1">
-            <span class="badge">✅ Đã test</span>
-            <h3>🔧4 Ứng Dụng Super Lite Hệ Thống Android Nhẹ Nhất V1🚀</h3>
-            <div class="social-proof">🔥 Nhiều người đã tải · ⭐ Đánh giá tốt</div>
-            <a class="download-btn" href="https://www.mediafire.com/file/kiw49v0cod29bxt/4_App_Lite_Android__Nh%E1%BA%B9_Nh%E1%BA%A5t_Th%E1%BA%BF_G%E1%BB%9Bi_V1.zip/file" target="_blank">Tải file</a>
-            <div class="video-box"><iframe src="https://www.youtube.com/embed/e-aqOjHg0-I" loading="lazy" allowfullscreen></iframe></div>
-        </div>
-
-        <div class="card" data-title="Youtube Super Lite Top Ứng Dụng Hệ Thống Android Nhẹ Nhất V2">
-            <span class="badge">✅ Đã test</span>
-            <h3>🔧Youtube Super Lite | Top Ứng Dụng Nhẹ Nhất V2🚀</h3>
-            <div class="social-proof">🔥 Nhiều người đã tải · ⭐ Đánh giá tốt</div>
-            <a class="download-btn" href="https://www.mediafire.com/file/qvp7xyqmjw7xznb/YouTube_Lite.zip/file" target="_blank">Tải file</a>
-            <div class="video-box"><iframe src="https://www.youtube.com/embed/Sup0wxV_7Mo" loading="lazy" allowfullscreen></iframe></div>
-        </div>
-
-        <div class="card" data-title="File Apk Service Android Fix Lag Tăng Hiệu Suất Performance">
-            <span class="badge">✅ Đã test</span>
-            <h3>🔧File Apk Service Android ✅Fix Lag Tăng Hiệu Suất Performance</h3>
-            <div class="social-proof">🔥 Nhiều người đã tải · ⭐ Đánh giá tốt</div>
-            <a class="download-btn" href="https://www.mediafire.com/file/dx4eelizkkx9q7x/File_Apk_Service_Fix_Lag_System_Performance.rar/file" target="_blank">Tải file</a>
-            <div class="video-box"><iframe src="https://www.youtube.com/embed/ZcWG5MRm3yU" loading="lazy" allowfullscreen></iframe></div>
-        </div>
-
-        <div class="card" data-title="Xóa File Rác Android Dọn Dẹp Tăng Tốc Bộ Nhớ">
-            <span class="badge">✅ Đã test</span>
-            <h3>Xóa File Rác Android ✅| Dọn Dẹp Tăng Tốc Bộ Nhớ Tốt Nhất</h3>
-            <div class="social-proof">🔥 Nhiều người đã tải · ⭐ Đánh giá tốt</div>
-            <a class="download-btn" href="https://www.mediafire.com/file/004d0zvi8hd73bt/Cleaner_Folder.zip/file" target="_blank">Tải file</a>
-            <div class="video-box"><iframe src="https://www.youtube.com/embed/Gt-fitInWyk" loading="lazy" allowfullscreen></iframe></div>
-        </div>
-
-        <div class="card" data-title="File system Android Fix lag tăng fps">
-            <span class="badge">✅ Đã test</span>
-            <h3>File system Android🚀 Fix lag tăng fps</h3>
-            <div class="social-proof">🔥 Nhiều người đã tải · ⭐ Đánh giá tốt</div>
-            <a class="download-btn" href="https://www.mediafire.com/file/29tl3q2iqk8zdoe/File_Data_Fix_Lag_%2B_FPS_Cao_.zip/file" target="_blank">Tải file</a>
-            <div class="video-box"><iframe src="https://www.youtube.com/embed/L-QCfcQyock" loading="lazy" allowfullscreen></iframe></div>
-        </div>
-
-        <div class="card" data-title="File làm mát siêu tiết kiệm by mod lite">
-            <span class="badge">✅ Đã test</span>
-            <h3>File làm mát siêu tiết kiệm by mod lite✅</h3>
-            <div class="social-proof">🔥 Nhiều người đã tải · ⭐ Đánh giá tốt</div>
-            <a class="download-btn" href="https://www.mediafire.com/file/yonrulss2i3xrg8/L%C3%A0m_M%C3%A1t_V%C3%A0_T%C4%83ng_Tu%E1%BB%95i_Th%E1%BB%8D_Pin_T%E1%BB%91t_Nh%E1%BA%A5t.rar/file" target="_blank">Tải file</a>
-            <div class="video-box"><iframe src="https://www.youtube.com/embed/5iTXG-cjddM" loading="lazy" allowfullscreen></iframe></div>
-        </div>
-
-        <div class="card" data-title="ROOT Fix lag cực sâu vào hệ thống An toàn">
-            <span class="badge">✅ Đã test</span>
-            <h3>[ROOT] Fix lag cực sâu vào hệ thống - An toàn 🚀✅</h3>
-            <div class="social-proof">🔥 Nhiều người đã tải · ⭐ Đánh giá tốt</div>
-            <a class="download-btn" href="https://www.mediafire.com/file/l0ehepaj2hcx7z3/Android_System_Root.apk/file" target="_blank">Tải file</a>
-            <div class="video-box"><iframe src="https://www.youtube.com/embed/jnuH1jkB9yw" loading="lazy" allowfullscreen></iframe></div>
-        </div>
-
-        <div class="card" data-title="Fix trễ thông báo cho tốt cả ANDROID tốt nhất">
-            <span class="badge">✅ Đã test</span>
-            <h3>Fix trễ thông báo cho tốt cả ANDROID tốt nhất!</h3>
-            <div class="social-proof">🔥 Nhiều người đã tải · ⭐ Đánh giá tốt</div>
-            <a class="download-btn" href="https://www.mediafire.com/file/4lwjls8mk85teq7/Fix_ch%E1%BA%ADm_ho%E1%BA%B7c_kh%C3%B4ng_hi%E1%BB%87n_TB.zip/file" target="_blank">Tải file</a>
-            <div class="video-box"><iframe src="https://www.youtube.com/embed/eOcn4STxaVM" loading="lazy" allowfullscreen></iframe></div>
-        </div>
-
-        <div class="card" data-title="NEW SPEED ANDROID Tối ưu hóa toàn bộ hệ thống Brevent">
-            <span class="badge">✅ Đã test</span>
-            <h3>NEW SPEED ANDROID 🔧 Tối ưu hóa toàn bộ hệ thống | Brevent</h3>
-            <div class="social-proof">🔥 Nhiều người đã tải · ⭐ Đánh giá tốt</div>
-            <a class="download-btn" href="https://www.mediafire.com/file/0a8e0u4ho0bbwo6/Speed_Android_V1.zip/file" target="_blank">Tải file</a>
-            <div class="video-box"><iframe src="https://www.youtube.com/embed/gq2Snktnntk" loading="lazy" allowfullscreen></iframe></div>
-        </div>
-
-        <div class="card" data-title="Sạc nhanh mát máy giảm chai pin">
-            <span class="badge">✅ Đã test</span>
-            <h3>Sạc nhanh_mát máy_giảm chai pin ✅🚀</h3>
-            <div class="social-proof">🔥 Nhiều người đã tải · ⭐ Đánh giá tốt</div>
-            <a class="download-btn" href="https://www.mediafire.com/file/4ku4gmegsgu277n/S%E1%BA%A1c_Nhanh_Vip_V2_%5BNo_Root%5D.zip/file" target="_blank">Tải file</a>
-            <div class="video-box"><iframe src="https://www.youtube.com/embed/dQmUhlmk9Gw" loading="lazy" allowfullscreen></iframe></div>
-        </div>
-
-        <div class="card" data-title="Tăng Đa nhiệm Android Yêu cầu Root">
-            <span class="badge">✅ Đã test</span>
-            <h3>Tăng Đa nhiệm Android (Yêu cầu Root)✅</h3>
-            <div class="social-proof">🔥 Nhiều người đã tải · ⭐ Đánh giá tốt</div>
-            <a class="download-btn" href="https://www.mediafire.com/file/09g8zq20xshstp9/Ram_Manager_Pro.apk/file" target="_blank">Tải file</a>
-            <div class="video-box"><iframe src="https://www.youtube.com/embed/FvyA_RlgErA" loading="lazy" allowfullscreen></iframe></div>
-        </div>
-
-        <div class="card" data-title="Chrome lite chromium">
-            <span class="badge">✅ Đã test</span>
-            <h3>Chrome lite(chromium)</h3>
-            <div class="social-proof">🔥 Nhiều người đã tải · ⭐ Đánh giá tốt</div>
-            <a class="download-btn" href="https://github.com/Alex313031/Thorium-Android/releases/download/M126.0.6478.246/Thorium_Public_arm64.apk&html_redirect=1" target="_blank">Tải file</a>
-            <div class="video-box"><iframe src="https://www.youtube.com/embed/Bq-uaG1-1oo" loading="lazy" allowfullscreen></iframe></div>
-        </div>
-
-        <div class="card" data-title="Speed Android 2.0">
-            <span class="badge">✅ Đã test</span>
-            <h3>Speed Android 2.0 🚀</h3>
-            <div class="social-proof">🔥 Nhiều người đã tải · ⭐ Đánh giá tốt</div>
-            <a class="download-btn" href="https://www.mediafire.com/file/wztzqymy0x7s7lc/Speed_Android_2.apk/file" target="_blank">Tải file</a>
-            <div class="video-box"><iframe src="https://www.youtube.com/embed/G5bgQLm4JSU" loading="lazy" allowfullscreen></iframe></div>
-        </div>
-
-        <div class="card" data-title="Code brevent fix lag trực tiếp vào game">
-            <span class="badge">✅ Đã test</span>
-            <h3>Code brevent fix lag trực tiếp vào game✅🚀</h3>
-            <div class="social-proof">🔥 Nhiều người đã tải · ⭐ Đánh giá tốt</div>
-            <a class="download-btn" href="https://www.mediafire.com/file/9w4f7ge37bwcggc/Code_Fix_Lag_Tr%E1%BB%B1c_Ti%E1%BA%BFp_Game_v2.txt/file" target="_blank">Tải file</a>
-            <div class="video-box"><iframe src="https://www.youtube.com/embed/rmx7nteAknI" loading="lazy" allowfullscreen></iframe></div>
-        </div>
-
-        <div class="card" data-title="Tool tắt chạy ngầm siêu hiệu quả">
-            <span class="badge">✅ Đã test</span>
-            <h3>Tool tắt chạy ngầm siêu hiệu quả 🔧</h3>
-            <div class="social-proof">🔥 Nhiều người đã tải · ⭐ Đánh giá tốt</div>
-            <a class="download-btn" href="https://www.mediafire.com/file/l1jfdygt21kd4ft/Tool_t%E1%BA%AFt_app_ch%E1%BA%A1y_ng%E1%BA%A7m_khi_ch%C6%A1i_game1.rar/file" target="_blank">Tải file</a>
-            <div class="video-box"><iframe src="https://www.youtube.com/embed/GWMVUwU1Ey0" loading="lazy" allowfullscreen></iframe></div>
-        </div>
-
-        <div class="card" data-title="Tăng fps tăng tần số quét màn hình">
-            <span class="badge">✅ Đã test</span>
-            <h3>Tăng fps, tăng tần số quét màn hình ✅🚀</h3>
-            <div class="social-proof">🔥 Nhiều người đã tải · ⭐ Đánh giá tốt</div>
-            <a class="download-btn" href="https://www.mediafire.com/file/ky7cuuobm76bmpa/Fps_Hz.apk/file" target="_blank">Tải file</a>
-            <div class="video-box"><iframe src="https://www.youtube.com/embed/AaSrhrR_Ypc" loading="lazy" allowfullscreen></iframe></div>
-        </div>
-
-        <div class="card" data-title="Game space Realme Oppo Android 10 13">
-            <span class="badge">✅ Đã test</span>
-            <h3>Game space Realme,Oppo android 10-13</h3>
-            <div class="social-proof">🔥 Nhiều người đã tải · ⭐ Đánh giá tốt</div>
-            <a class="download-btn" href="https://www.mediafire.com/file/w1yrhndpofcz0yk/Android_10-11%28Realme%2C_Oppo%29_Kh%C3%B4ng_H%E1%BB%97_Tr%E1%BB%A3_%C4%90%E1%BB%97i_Gi%E1%BB%8Dng.rar/file" target="_blank">Tải file</a>
-            <div class="video-box"><iframe src="https://www.youtube.com/embed/OpmeXbXcGzk" loading="lazy" allowfullscreen></iframe></div>
-        </div>
-
-        <div class="card" data-title="Siêu tiết kiệm pin Android 200%">
-            <span class="badge">✅ Đã test</span>
-            <h3>Siêu tiết kiệm pin Android 200% 🚀 xem sếch 7749 ngày chưa hết</h3>
-            <div class="social-proof">🔥 Nhiều người đã tải · ⭐ Đánh giá tốt</div>
-            <a class="download-btn" href="https://www.mediafire.com/file/x6c0r1ln881t8in/Combo_Super_Si%C3%AAu_Ti%E1%BA%BFt_Ki%E1%BB%87m_Pin.rar/file" target="_blank">Tải file</a>
-            <div class="video-box"><iframe src="https://www.youtube.com/embed/D0iBGuq-2Bg" loading="lazy" allowfullscreen></iframe></div>
-        </div>
-
-        <div class="card" data-title="Code hệ thống xóa file rác">
-            <span class="badge">✅ Đã test</span>
-            <h3>Code hệ thống xóa file rác ✅</h3>
-            <div class="social-proof">🔥 Nhiều người đã tải · ⭐ Đánh giá tốt</div>
-            <a class="download-btn" href="https://drive.google.com/file/d/1Zkqu8yqqhObgLoYgLbxbDRszJzIDqugw/view" target="_blank">Tải file</a>
-            <div class="video-box"><iframe src="https://www.youtube.com/embed/HUQyFWeY6Ug" loading="lazy" allowfullscreen></iframe></div>
-        </div>
-
-        <div class="card" data-title="Tăng bộ nhớ trống bằng một click Tăng tốc fix lag điện thoại">
-            <span class="badge">✅ Đã test</span>
-            <h3>Tăng bộ nhớ trống bằng một click🔧 tăng tốc fix lag điện thoại 🚀</h3>
-            <div class="social-proof">🔥 Nhiều người đã tải · ⭐ Đánh giá tốt</div>
-            <a class="download-btn" href="https://www.mediafire.com/file/4yhh0e6t4w07xoc/Cleaner.apk/file" target="_blank">Tải file</a>
-            <div class="video-box"><iframe src="https://www.youtube.com/embed/VKuUk3Gk_WI" loading="lazy" allowfullscreen></iframe></div>
-        </div>
-
-        <div class="card" data-title="Minecraft đời tống">
-            <span class="badge">✅ Đã test</span>
-            <h3>Minecraft đời tống</h3>
-            <div class="social-proof">🔥 Nhiều người đã tải · ⭐ Đánh giá tốt</div>
-            <a class="download-btn" href="https://www.mediafire.com/file/l4srhmk6b9v2tl3/Minecraft_1.20.30.01_Lite.rar/file" target="_blank">Tải file</a>
-            <div class="video-box"><iframe src="https://www.youtube.com/embed/r9PmVOwaRXU" loading="lazy" allowfullscreen></iframe></div>
-        </div>
-
-        <div class="card" data-title="MSI Fix rung tâm tăng nhạy cho Free Fire">
-            <span class="badge">✅ Đã test</span>
-            <h3>MSI - fix rung tâm tăng nhạy cho free fire</h3>
-            <div class="social-proof">🔥 Nhiều người đã tải · ⭐ Đánh giá tốt</div>
-            <a class="download-btn" href="https://www.mediafire.com/file/643beta3ijs4hzi/MSI_MOBILE_2.0.apk/file" target="_blank">Tải file</a>
-            <div class="video-box"><iframe src="https://www.youtube.com/embed/SRnSSBug9V0" loading="lazy" allowfullscreen></iframe></div>
-        </div>
-
-        <div class="card" data-title="Bật chế độ Performance">
-            <span class="badge">✅ Đã test</span>
-            <h3>🔑Chế Độ Gaming ✅</h3>
-            <div class="social-proof">🔥 Nhiều người đã tải · ⭐ Đánh giá tốt</div>
-            <a class="download-btn" href="https://www.mediafire.com/file/ofinyh416q0wetr/%F0%9F%94%91Ch%E1%BA%BF_%C4%90%E1%BB%99_Gaming_%E2%9C%85.txt/file" target="_blank">Tải file</a>
-            <div class="video-box"><iframe src="https://www.youtube.com/embed/Gkcijk5rbzw" loading="lazy" allowfullscreen></iframe></div>
-        </div>
-
-<div class="card" data-title="Hủy diệt Lag Android v2 mới nhất">
-            <span class="badge">✅ Đã test</span>
-            <h3>⚡ Hủy diệt Lag Android v2 mới nhất</h3>
-            <div class="social-proof">🔥 Nhiều người đã tải · ⭐ Đánh giá tốt</div>
-            <a class="download-btn" href="https://drive.google.com/file/d/1md2vdijuXf9wRdCZkafw9NC3dxzabPc5/view?usp=sharing" target="_blank">Tải file</a>
-            <div class="video-box"><iframe src="https://www.youtube.com/embed/YeLHGyrbCeg" loading="lazy" allowfullscreen></iframe></div>
-        </div>
-
-        <div class="card" data-title="ShizuPeter">
-            <span class="badge">✅ Đã test</span>
-            <h3>ShizuPeter</h3>
-            <div class="social-proof">🔥 Nhiều người đã tải · ⭐ Đánh giá tốt</div>
-            <a class="download-btn" href="https://drive.google.com/file/d/1oiH3kNs_s_rNzmAUku_tVdGp5_zvTe6o/view" target="_blank">Tải file</a>
-            <div class="video-box"><iframe src="https://www.youtube.com/embed/EfHje2zAGGc" loading="lazy" allowfullscreen></iframe></div>
-        </div>
-
-        <div class="card" data-title="Discord Lite">
-            <span class="badge">✅ Đã test</span>
-            <h3>Discord Lite</h3>
-            <div class="social-proof">🔥 Nhiều người đã tải · ⭐ Đánh giá tốt</div>
-            <a class="download-btn" href="https://www.mediafire.com/file/l6760hwnk0uqrqf/Discord_lite.rar/file" target="_blank">Tải file</a>
-            <div class="video-box"><iframe src="https://www.youtube.com/embed/rwQcs2G2fOM" loading="lazy" allowfullscreen></iframe></div>
-        </div>
+  <div class="features">
+    <div class="feature-card">
+      <div class="feature-icon">🚀</div>
+      <div><h4>Fix Lag Toàn Diện</h4><p>Tối ưu hệ thống, tăng FPS, giảm giật lag khi chơi game hay dùng máy hằng ngày</p></div>
     </div>
-    <div class="faq">
-        <h2>Một số câu hỏi thường gặp</h2>
-        <div class="faq-item">
-            <b>Làm sao để tìm file mình cần?</b>
-            <p>Dùng ô tìm kiếm ở trên đầu trang, gõ tên app hoặc từ khoá liên quan là ra ngay.</p>
-        </div>
-        <div class="faq-item">
-            <b>File tải về có an toàn không?</b>
-            <p>Tất cả file đều được test kỹ trước khi đăng, an tâm sử dụng.</p>
-        </div>
-        <div class="faq-item">
-            <b>Không thấy video hướng dẫn?</b>
-            <p>Mỗi card đều có video nhúng sẵn ngay bên dưới nút Tải file, xem trực tiếp không cần qua Youtube.</p>
-        </div>
+    <div class="feature-card">
+      <div class="feature-icon">🎥</div>
+      <div><h4>Video Hướng Dẫn Chi Tiết</h4><p>Mỗi tool đều có video minh hoạ cách dùng, xem trực tiếp không cần qua Youtube</p></div>
     </div>
-
-    <div class="footer">
-        Minh Khang Technology © 2026 · Mọi công cụ chia sẻ hoàn toàn miễn phí
+    <div class="feature-card">
+      <div class="feature-icon">✅</div>
+      <div><h4>An Toàn 100%</h4><p>Mọi file đều được test kỹ trước khi đăng, dùng vĩnh viễn không lo mất phí</p></div>
     </div>
+  </div>
+</main>
 
-    <script>
-        function searchItems() {
-            var input = document.getElementById('searchInput').value.toLowerCase().trim();
-            var landing = document.getElementById('landingSection');
-            var list = document.getElementById('list');
-            if (input === '') {
-                landing.classList.remove('hidden');
-                list.classList.add('hidden');
-                return;
-            }
-            landing.classList.add('hidden');
-            list.classList.remove('hidden');
-            var cards = document.querySelectorAll('.card');
-            cards.forEach(function(card) {
-                var title = card.getAttribute('data-title').toLowerCase();
-                card.classList.toggle('hidden', !title.includes(input));
-            });
-        }
+<footer class="footer">
+  © 2026 Website của tôi. Được host trên GitHub Pages.
+</footer>
 
-        function showAllTools() {
-            document.getElementById('landingSection').classList.add('hidden');
-            document.getElementById('list').classList.remove('hidden');
-            document.querySelectorAll('.card').forEach(function(card) {
-                card.classList.remove('hidden');
-            });
-            document.getElementById('searchInput').focus();
-        }
-    </script>
-    <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const iframes = document.querySelectorAll('.video-box iframe');
-        let lastHovered = null;
-        iframes.forEach(function (iframe) {
-            iframe.addEventListener('mouseenter', function () {
-                if (lastHovered && lastHovered !== iframe) {
-                    lastHovered.src = lastHovered.src;
-                }
-                lastHovered = iframe;
-            });
-        });
-    });
-    </script>
-    <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const cards = document.querySelectorAll('.card');
-        const observer = new IntersectionObserver(function (entries) {
-            entries.forEach(function (entry) {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('in-view');
-                } else {
-                    entry.target.classList.remove('in-view');
-                }
-            });
-        }, { threshold: 0.6 });
-        cards.forEach(function (card) {
-            observer.observe(card);
-        });
-    });
-    </script>
-    <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const cards = document.querySelectorAll('.card');
-        cards.forEach(function (card) {
-            card.addEventListener('touchstart', function () {
-                card.classList.add('pressed');
-            }, { passive: true });
-            card.addEventListener('touchend', function () {
-                card.classList.remove('pressed');
-            }, { passive: true });
-            card.addEventListener('touchcancel', function () {
-                card.classList.remove('pressed');
-            }, { passive: true });
-        });
-    });
-    </script>
-    <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const nums = document.querySelectorAll('.stat-item .num');
-        nums.forEach(function (el) {
-            const raw = el.textContent.trim();
-            const suffix = raw.replace(/[0-9]/g, '');
-            const target = parseInt(raw.replace(/[^0-9]/g, ''), 10);
-            if (isNaN(target)) return;
-            let current = 0;
-            const step = Math.max(1, Math.ceil(target / 40));
-            const timer = setInterval(function () {
-                current += step;
-                if (current >= target) { current = target; clearInterval(timer); }
-                el.textContent = current + suffix;
-            }, 30);
-        });
-        const chartBlock = document.querySelector('.chart-block');
-        if (chartBlock) {
-            const chartObserver = new IntersectionObserver(function (entries) {
-                entries.forEach(function (entry) {
-                    if (entry.isIntersecting) {
-                        document.querySelectorAll('.chart-bar').forEach(function (bar) {
-                            bar.style.height = bar.getAttribute('data-h') + '%';
-                        });
-                        chartObserver.disconnect();
-                    }
-                });
-            }, { threshold: 0.4 });
-            chartObserver.observe(chartBlock);
-        }
-    });
-    </script>
+<script src="assets/script.js"></script>
 </body>
 </html>

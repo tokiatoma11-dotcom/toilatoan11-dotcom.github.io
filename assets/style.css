@@ -137,9 +137,9 @@ body {
 
 .mascot-wrap { flex-shrink: 0; }
 .mascot-img {
-  width: 48px;
-  height: 48px;
+  width: 64px;
+  height: 64px;
   max-width: 100%;
   display: block;
   filter: drop-shadow(0 4px 10px rgba(0,0,0,0.4));
-  }
+ }

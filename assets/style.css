@@ -143,3 +143,9 @@ body {
   display: block;
   filter: drop-shadow(0 4px 10px rgba(0,0,0,0.4));
  }
+.card { padding: 16px 0; }
+.card h3, .card .badge, .card .social-proof, .card .download-btn {
+  margin-left: 16px;
+  margin-right: 16px;
+}
+.video-box { border-radius: 0; margin: 0; }

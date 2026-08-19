@@ -82,7 +82,7 @@ body {
 .feature-card p { font-size: 14px; color: #a4a4ae; line-height: 1.4; }
 
 /* Video / list page */
-.video-page { max-width: 800px; margin: 0 auto; padding: 20px; }
+.video-page { max-width: 850px; margin: 0 auto; padding: 20px; }
 .search-box {
   width: 100%; padding: 14px 18px; border-radius: 12px;
   border: 1px solid #2a2b34; background: #17181f; color: #fff;

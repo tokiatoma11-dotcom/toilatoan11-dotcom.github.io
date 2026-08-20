@@ -143,4 +143,46 @@ body {
   display: block;
   filter: drop-shadow(0 4px 10px rgba(0,0,0,0.4));
  }
- 
+ .support-contact {
+  text-align: center;
+  padding: 60px 20px;
+}
+.support-contact h2 {
+  font-size: 2rem;
+  color: #fff;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+  font-weight: 800;
+}
+.support-contact p {
+  color: #ccc;
+  font-size: 1rem;
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto 28px;
+}
+.support-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.support-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #555;
+  border-radius: 30px;
+  padding: 12px 28px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  transition: border-color 0.2s;
+}
+.support-btn:hover {
+  border-color: #3b74f2;
+}
+.support-btn svg {
+  width: 20px;
+  height: 20px;
+    }

@@ -50,3 +50,37 @@ document.getElementById("formDangNhap").addEventListener("submit", async (e) => 
     setTimeout(() => window.location.href = "index.html", 1000);
   }
 });
+async function kiemTraDangNhap() {
+  const { data: { session } } = await supabase.auth.getSession();
+  return session;
+}
+
+async function capNhatMenuDangNhap() {
+  const session = await kiemTraDangNhap();
+  const nav = document.getElementById("navAuth");
+  if (nav && session) {
+    nav.textContent = "Đăng xuất";
+    nav.href = "#";
+    nav.onclick = async (e) => {
+      e.preventDefault();
+      await supabase.auth.signOut();
+      window.location.reload();
+    };
+  }
+}
+
+async function chanTaiFileNeuChuaDangNhap() {
+  const session = await kiemTraDangNhap();
+  if (session) return;
+
+  document.querySelectorAll(".download-btn").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      alert("Bạn cần đăng nhập để tải file. Đang chuyển đến trang đăng nhập...");
+      window.location.href = "login.html";
+    });
+  });
+}
+
+capNhatMenuDangNhap();
+chanTaiFileNeuChuaDangNhap();

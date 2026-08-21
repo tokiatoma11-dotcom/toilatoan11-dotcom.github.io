@@ -83,3 +83,11 @@ async function chanTaiFileNeuChuaDangNhap() {
 
 capNhatMenuDangNhap();
 chanTaiFileNeuChuaDangNhap();
+async function hienThiThongTinNguoiDung() {
+  const session = await kiemTraDangNhap();
+  const elThongTin = document.getElementById("thongTinUser");
+  if (elThongTin && session) {
+    const ten = session.user.user_metadata?.full_name || session.user.email;
+    elThongTin.textContent = "Xin chào, " + ten;
+  }
+}

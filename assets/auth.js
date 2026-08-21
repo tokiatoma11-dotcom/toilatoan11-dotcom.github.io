@@ -80,10 +80,6 @@ async function chanTaiFileNeuChuaDangNhap() {
     });
   });
 }
-
-capNhatMenuDangNhap();
-chanTaiFileNeuChuaDangNhap();
-hienThiThongTinNguoiDung();
 async function hienThiThongTinNguoiDung() {
   const session = await kiemTraDangNhap();
   const elThongTin = document.getElementById("thongTinUser");
@@ -92,3 +88,6 @@ async function hienThiThongTinNguoiDung() {
     elThongTin.textContent = "Xin chào, " + ten;
   }
 }
+capNhatMenuDangNhap();
+chanTaiFileNeuChuaDangNhap();
+hienThiThongTinNguoiDung();

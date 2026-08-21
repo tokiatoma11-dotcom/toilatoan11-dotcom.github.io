@@ -49,6 +49,7 @@ document.getElementById("formDangNhap").addEventListener("submit", async (e) => 
     setTimeout(() => window.location.href = "index.html", 1000);
   }
 });
+
 async function kiemTraDangNhap() {
   const { data: { session } } = await supabase.auth.getSession();
   return session;
@@ -80,6 +81,7 @@ async function chanTaiFileNeuChuaDangNhap() {
     });
   });
 }
+
 async function hienThiThongTinNguoiDung() {
   const session = await kiemTraDangNhap();
   const elThongTin = document.getElementById("thongTinUser");
@@ -88,6 +90,7 @@ async function hienThiThongTinNguoiDung() {
     elThongTin.textContent = "Xin chào, " + ten;
   }
 }
+
 capNhatMenuDangNhap();
 chanTaiFileNeuChuaDangNhap();
 hienThiThongTinNguoiDung();

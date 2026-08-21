@@ -1,7 +1,6 @@
 const supabaseUrl = "https://czdwjvrxurhowgduypbe.supabase.co";
 const supabaseKey = "sb_publishable_ZzTEGiH075LhKy1YkeXxsQ_P2Puw1YF";
 const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
-const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
 function chuyenTab(tab) {
   document.getElementById("formDangNhap").style.display = tab === "dangnhap" ? "flex" : "none";

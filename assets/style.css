@@ -337,3 +337,27 @@ body {
 @supports not (backdrop-filter: blur(1px)) {
   .hero-glass { background: rgba(255,255,255,0.92); }
 }
+/* Khối màu mờ nền chung cho toàn trang, để hiệu ứng kính mờ trên card rõ hơn */
+body {
+  position: relative;
+  overflow-x: hidden;
+}
+body::before,
+body::after {
+  content: '';
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(80px);
+  z-index: -1;
+  pointer-events: none;
+}
+body::before {
+  width: 320px; height: 320px;
+  background: radial-gradient(circle, #a29bfe, transparent 70%);
+  top: -60px; left: -80px;
+}
+body::after {
+  width: 360px; height: 360px;
+  background: radial-gradient(circle, #6c5ce7, transparent 70%);
+  bottom: -100px; right: -100px;
+}

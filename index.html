@@ -14,32 +14,8 @@
   <nav>
     <a href="index.html" class="active">Trang chủ</a>
     <a href="video.html">Video</a>
-    <span id="thongTinUser" style="color:#5b8dff; margin-right:12px;"></span>
-    <a href="index.html#authBox" id="navAuth">Đăng nhập</a>
   </nav>
 </header>
-
-<section id="authBox" class="auth-box">
-  <div class="auth-tabs">
-    <button class="auth-tab active" id="tabDangNhap" onclick="chuyenTab('dangnhap')">Đăng nhập</button>
-    <button class="auth-tab" id="tabDangKy" onclick="chuyenTab('dangky')">Đăng ký</button>
-  </div>
-
-  <form id="formDangNhap" class="auth-form">
-    <input type="email" id="loginEmail" placeholder="Email" required>
-    <input type="password" id="loginPassword" placeholder="Mật khẩu" required minlength="6">
-    <button type="submit" class="btn-primary" style="width:100%;">Đăng nhập</button>
-    <p class="auth-msg" id="loginMsg"></p>
-  </form>
-
-  <form id="formDangKy" class="auth-form" style="display:none;">
-    <input type="text" id="regHoTen" placeholder="Họ và tên" required>
-    <input type="email" id="regEmail" placeholder="Email" required>
-    <input type="password" id="regPassword" placeholder="Mật khẩu (ít nhất 6 ký tự)" required minlength="6">
-    <button type="submit" class="btn-primary" style="width:100%;">Đăng ký</button>
-    <p class="auth-msg" id="regMsg"></p>
-  </form>
-</section>
 
  <main class="hero">
   <div class="hero-top">
@@ -125,7 +101,5 @@
 </footer>
 
 <script src="assets/script.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="assets/auth.js"></script>
 </body>
 </html>
